@@ -49,7 +49,7 @@ class Particle(object):
 		#super(Particle, self).__init__()		
 		self.x = x		#Position
 		self.y = y		
-		self.vx =vx		#celocity components
+		self.vx =vx		#velocity components
 		self.vy = vy
 
 		self.age= 0		
@@ -103,11 +103,11 @@ class ParticleBurst(Particle):
 
 		for i in range(explodeCount):
 			angle = Utils.getRadians(random.randint(0,360))			
-			speed= params['explosionSpeed'] * (1 -random.random())
+			speed = params['explosionSpeed'] * (1 -random.random())
 			vx = math.cos(angle)*speed
 			vy = -math.sin(angle)*speed
-			x = self.x + vx
-			y = self.y + vy
+			x  = self.x + vx
+			y  = self.y + vy
 			# Create Fireworks particles
 			obj = Particle(x,y,vx,vy,color,params['particleSize'])			
 			particleList.append(obj)
@@ -134,7 +134,8 @@ class ParticleSystem():
 		#self.explode()
 
 	def addExploder(self):
-		speed=5 #* (1 - random.uniform(0,params['explosionVariation'])/100)
+		speed = params['explosionSpeed']
+		speed *= (1 - random.uniform(0,params['explosionVariation'])/100)
 		angle = 270*3.14/180 + round(random.uniform(-0.5,0.5),2)
 		vx = speed * math.cos(angle) 
 		vy = -speed * math.sin(angle)
