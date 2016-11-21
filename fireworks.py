@@ -83,11 +83,11 @@ class Particle(object):
 
 	def check_particle_age(self):		
 		self.age +=1 
-		self.is_dead = self.age >= self.max_age		
-		#Start ageing
-		if self.age >= 80:
-			self.color[3]=(self.max_age-self.age)/100		
+		self.is_dead = self.age >= self.max_age	
 
+		#Start ageing
+		# Achieve a linear color falloff(ramp) based on age.
+		self.color[3]= 1.0 - float(self.age)/float(self.max_age)
 
 class ParticleBurst(Particle):	
 	def __init__(self,x,y,vx,vy):
@@ -118,8 +118,11 @@ class ParticleBurst(Particle):
 		if self.vy <0:
 			self.age += 1
 
-		if self.age >5:
-			self.is_dead = True
+		# Tweaking explode time
+		temp = int ( 100*  random.random()) + params['explosionVariation']
+		
+		if self.age > temp:
+			self.is_dead = True			
 			self.explode()
 
 class ParticleSystem():
