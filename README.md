@@ -8,7 +8,8 @@ A simple __particle solver__, which can be controlled to visualize a Fireworks s
 - python
 - OpenGLContext
 - PyOpenGL
-- json
+- PyVRML97
+- PyDispatcher
 
 
 ## Launch 
